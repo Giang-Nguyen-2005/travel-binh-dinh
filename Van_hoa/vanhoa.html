@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Khám phá Bình Định</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <script src="../jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <section id="culture">
+        <div class="image">
+            <img src="../assets/img/cuturalbinhdinh1.jpg" alt="Văn hóa Bình Định">
+        </div>
+        <div class="text-content">
+            <h1>Văn hóa & Lịch sử</h1>
+            <p>
+                Bình Định là một vùng đất giàu truyền thống văn hóa và lịch sử, nằm ở miền Trung Việt Nam. 
+                Nơi đây từng là trung tâm của vương quốc Champa cổ, để lại nhiều dấu ấn qua các tháp Chăm độc đáo. 
+                Bình Định cũng nổi tiếng là quê hương của người anh hùng áo vải Quang Trung - Nguyễn Huệ, 
+                gắn liền với nhiều chiến công hiển hách trong lịch sử dân tộc. Không chỉ có bề dày lịch sử, 
+                Bình Định còn lưu giữ và phát triển nhiều giá trị văn hóa đặc sắc như võ cổ truyền, nghệ thuật tuồng (hát bội),
+                cùng với đời sống sinh hoạt đậm đà bản sắc miền Trung.
+            </p>
+            <button>
+                KHÁM PHÁ <span class="arrow">→</span>
+            </button>
+
+        </div>
+    </section>
+    <br>
+    <section id="location">
+        <div class="image">
+            <img src="../assets/img/photo-1594478851981-65de6e4d0bfd.avif" alt="Điểm đến Bình Định">
+        </div>
+        <div class="text-content">
+            <h1> Điểm đến nổi bật</h1>
+            <p>
+                Bình Định, một viên ngọc của miền Trung Việt Nam, 
+                tự hào là vùng đất giao thoa hoàn hảo giữa vẻ đẹp thiên nhiên hùng vĩ và bề dày lịch sử- văn hóa ngàn năm. 
+                Đến với Bình Định, du khách sẽ được chiêm ngưỡng những bãi biển Quy Nhơntrong xanh mướt mắt, 
+                khám phá vẻ đẹp hoang sơ của Eo Gió - Kỳ Co, hay lạc bước trên con đường 
+                biển độc đáo ở Hòn Khô. Không chỉ có vậy, mảnh đất này còn là cái nôi của vương quốc Champa cổ đại
+                với những tháp Chăm uy nghi và là quê hương của người anh hùng áo vải Quang Trung - Nguyễn Huệ, 
+                để lại nhiều dấu ấn lịch sử hào hùng. Bình Định hứa hẹn mang đến một hành trình đầy cảm hứng, 
+                từ những trải nghiệm thư giãn bên bờ biển đến việc khám phá những giá trị văn hóa và lịch sử sâu sắc.
+            </p>
+            <button>
+                KHÁM PHÁ <span class="arrow">→</span>
+            </button>
+
+        </div>
+    </section>
+    <script>
+    $(document).ready(function() {
+        function checkVisibility() {
+            $('.image, .text-content').each(function() {
+                const elementTop = $(this).offset().top;
+                const windowBottom = $(window).scrollTop() + $(window).height();
+
+                if (elementTop < windowBottom - 50) {
+                    $(this).addClass('visible');
+                }
+            });
+        }
+        $(window).on('scroll', checkVisibility);
+        checkVisibility();
+    });
+    </script>
+</body>
+</html>
