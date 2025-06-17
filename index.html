@@ -1,236 +1,28 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>KHÁM PHÁ BÌNH ĐỊNH</title>
-
+  <link rel="stylesheet" href="assets/css/style.css" />
+  
   <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
   <!-- Swiper CSS -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/swiper@9/swiper-bundle.min.css"
-  />
-
-  <style>
-    :root {
-      --primary: #ff7043;
-      --primary-light: #ffab91;
-      --nav-height: 80px;
-    }
-
-    /* Reset cơ bản */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    html {
-      scroll-behavior: smooth;
-    }
-    body, html {
-      font-family: 'Poppins', sans-serif;
-      color: #333;
-      height: 100%;
-    }
-
-    /* Navbar */
-    nav {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: var(--nav-height);
-      padding: 0 4rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: linear-gradient(135deg, #ff8a65, #ff5722);
-      color: #fff;
-      z-index: 10000;
-      transition: padding 0.3s, box-shadow 0.3s;
-    }
-    nav.scrolled {
-      padding: 0 2rem;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    }
-    nav .logo {
-      font-size: 2rem;
-      font-weight: 800;
-      text-decoration: none;
-      color: #fff;
-    }
-    nav .nav-menu {
-      list-style: none;
-      display: flex;
-      align-items: center;
-    }
-    nav .nav-menu li {
-      margin-left: 2rem;
-    }
-    nav .nav-menu li a {
-      color: #fff;
-      font-weight: 600;
-      text-decoration: none;
-      position: relative;
-      font-size: 20px;
-    }
-    nav .nav-menu li a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px; left: 0;
-      width: 0; height: 2px;
-      background: #fff;
-      transition: width 0.3s;
-    }
-    nav .nav-menu li a:hover::after {
-      width: 100%;
-    }
-    /* Hamburger (mobile) */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      width: 24px; height: 18px;
-      justify-content: space-between;
-    }
-    .hamburger span {
-      display: block;
-      height: 3px;
-      background: #fff;
-      border-radius: 2px;
-      transition: transform 0.3s, opacity 0.3s;
-    }
-    .hamburger.active span:nth-child(1) {
-      transform: translateY(7.5px) rotate(45deg);
-    }
-    .hamburger.active span:nth-child(2) {
-      opacity: 0;
-    }
-    .hamburger.active span:nth-child(3) {
-      transform: translateY(-7.5px) rotate(-45deg);
-    }
-
-    /* Hero + Swiper */
-    #hero {
-      margin-top: var(--nav-height);
-    }
-    .swiper {
-      width: 100%;
-      height: calc(100vh - var(--nav-height));
-    }
-    .swiper-slide {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .swiper-slide video,
-    .swiper-slide img {
-      position: absolute;
-      top: 50%; left: 50%;
-      min-width: 100%; min-height: 100%;
-      transform: translate(-50%, -50%);
-      object-fit: cover;
-    }
-    .swiper-slide .overlay {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.4);
-      z-index: 2;
-    }
-    .swiper-slide .content {
-      position: relative;
-      z-index: 3;
-      text-align: center;
-      color: #fff;
-      padding: 0 1rem;
-      max-width: 800px;
-    }
-    .swiper-slide h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
-    }
-    .swiper-slide p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
-    }
-    .swiper-slide button {
-      padding: 0.8rem 2rem;
-      font-size: 1.1rem;
-      background: var(--primary);
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
-    .swiper-slide button:hover {
-      transform: scale(1.05);
-    }
-
-    /* Swiper controls */
-    .swiper-button-next,
-    .swiper-button-prev {
-      color: #fff;
-    }
-    .swiper-pagination-bullet {
-      background: #fff;
-      opacity: 0.6;
-    }
-    .swiper-pagination-bullet-active {
-      opacity: 1;
-    }
-
-    /* Responsive */
-    @media (max-width: 992px) {
-      nav {
-        padding: 0 2rem;
-      }
-      .hamburger {
-        display: flex;
-      }
-      nav .nav-menu {
-        position: fixed;
-        top: var(--nav-height); right: -100%;
-        width: 200px;
-        height: calc(100% - var(--nav-height));
-        background: rgba(255,255,255,0.95);
-        flex-direction: column;
-        padding-top: 2rem;
-        transition: right 0.3s;
-      }
-      nav .nav-menu.open {
-        right: 0;
-      }
-      nav .nav-menu li {
-        margin: 1rem 0 0 1.5rem;
-      }
-    }
-
-    /* Ẩn trước, để opacity = 0 và dịch xuống 20px */
-    .content-main {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    /* Class để hiện: opacity lên 1 và dịch về vị trí ban đầu */
-    .content-main.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-  </style>
+  <link rel="stylesheet" href="https://unpkg.com/swiper@9/swiper-bundle.min.css" />
 </head>
+<style>
+.swiper-slide {
+  position: relative;
+  display: flex;
+  align-items:center;
+  justify-content: center;
+}
+</style>
 <body>
 
   <!-- Navbar -->
@@ -238,8 +30,9 @@
     <a href="#hero" class="logo">BÌNH ĐỊNH</a>
     <ul class="nav-menu" id="nav-menu">
       <li><a href="#intro">GIỚI THIỆU</a></li>
-      <li><a href="#food">ẨM THỰC</a></li>
       <li><a href="#culture">VĂN HÓA</a></li>
+      <li><a href="#location">ĐIỂM ĐẾN</a></li>
+      <li><a href="#food">ẨM THỰC</a></li>
       <li><a href="#share">CHIA SẺ</a></li>
     </ul>
     <div class="hamburger" id="hamburger">
@@ -259,63 +52,70 @@
           <div class="overlay"></div>
           <div class="content content-main">
             <h1>Khám phá Bình Định</h1>
-            <p><span style="font-size: 30px; font-weight: 600;">Hành trình</span> trải nghiệm văn hóa, ẩm thực và cảnh đẹp đất võ</p>
+            <p><span style="font-size: 30px; font-weight: 600;">Hành trình</span> trải nghiệm văn hóa, ẩm thực và cảnh
+              đẹp đất võ</p>
             <button class="discover-btn">Bắt đầu khám phá</button>
           </div>
         </div>
         <!-- Slide 2: Ảnh -->
         <div class="swiper-slide">
-          <img src="../assets/img/1.jpg" alt="Bình Định 1" />
+          <img src="assets/img/1.jpg" alt="Bình Định 1" />
           <div class="overlay"></div>
           <div class="content">
             <h1>Khám phá Bình Định</h1>
-            <p><span style="font-size: 30px; font-weight: 600;">Hành trình</span> trải nghiệm văn hóa, ẩm thực và cảnh đẹp đất võ</p>
+            <p><span style="font-size: 30px; font-weight: 600;">Hành trình</span> trải nghiệm văn hóa, ẩm thực và cảnh
+              đẹp đất võ</p>
             <button class="discover-btn">Bắt đầu khám phá</button>
           </div>
         </div>
         <!-- Slide 3: Ảnh -->
         <div class="swiper-slide">
-          <img src="../assets/img/2.jpg" alt="Bình Định 2" />
+          <img src="assets/img/2.jpg" alt="Bình Định 2" />
           <div class="overlay"></div>
           <div class="content">
             <h1>Khám phá Bình Định</h1>
-            <p><span style="font-size: 30px; font-weight: 600;">Hành trình</span> trải nghiệm văn hóa, ẩm thực và cảnh đẹp đất võ</p>
+            <p><span style="font-size: 30px; font-weight: 600;">Hành trình</span> trải nghiệm văn hóa, ẩm thực và cảnh
+              đẹp đất võ</p>
             <button class="discover-btn">Bắt đầu khám phá</button>
           </div>
         </div>
         <div class="swiper-slide">
-          <img src="../assets/img/3.jpg" alt="Bình Định 2" />
+          <img src="assets/img/3.jpg" alt="Bình Định 3" />
           <div class="overlay"></div>
           <div class="content">
             <h1>Khám phá Bình Định</h1>
-            <p><span style="font-size: 30px; font-weight: 600;">Hành trình</span> trải nghiệm văn hóa, ẩm thực và cảnh đẹp đất võ</p>
+            <p><span style="font-size: 30px; font-weight: 600;">Hành trình</span> trải nghiệm văn hóa, ẩm thực và cảnh
+              đẹp đất võ</p>
             <button class="discover-btn">Bắt đầu khám phá</button>
           </div>
         </div>
         <div class="swiper-slide">
-          <img src="../assets/img/4.jpg" alt="Bình Định 2" />
+          <img src="assets/img/4.jpg" alt="Bình Định 4" />
           <div class="overlay"></div>
           <div class="content">
             <h1>Khám phá Bình Định</h1>
-            <p><span style="font-size: 30px; font-weight: 600;">Hành trình</span> trải nghiệm văn hóa, ẩm thực và cảnh đẹp đất võ</p>
+            <p><span style="font-size: 30px; font-weight: 600;">Hành trình</span> trải nghiệm văn hóa, ẩm thực và cảnh
+              đẹp đất võ</p>
             <button class="discover-btn">Bắt đầu khám phá</button>
           </div>
         </div>
         <div class="swiper-slide">
-          <img src="../assets/img/5.jpg" alt="Bình Định 2" />
+          <img src="assets/img/5.jpg" alt="Bình Định 5" />
           <div class="overlay"></div>
           <div class="content">
             <h1>Khám phá Bình Định</h1>
-            <p><span style="font-size: 30px; font-weight: 600;">Hành trình</span> trải nghiệm văn hóa, ẩm thực và cảnh đẹp đất võ</p>
+            <p><span style="font-size: 30px; font-weight: 600;">Hành trình</span> trải nghiệm văn hóa, ẩm thực và cảnh
+              đẹp đất võ</p>
             <button class="discover-btn">Bắt đầu khám phá</button>
           </div>
         </div>
         <div class="swiper-slide">
-          <img src="../assets/img/6.jpg" alt="Bình Định 2" />
+          <img src="assets/img/6.jpg" alt="Bình Định 6" />
           <div class="overlay"></div>
           <div class="content">
             <h1>Khám phá Bình Định</h1>
-            <p><span style="font-size: 30px; font-weight: 600;">Hành trình</span> trải nghiệm văn hóa, ẩm thực và cảnh đẹp đất võ</p>
+            <p><span style="font-size: 30px; font-weight: 600;">Hành trình</span> trải nghiệm văn hóa, ẩm thực và cảnh
+              đẹp đất võ</p>
             <button class="discover-btn">Bắt đầu khám phá</button>
           </div>
         </div>
@@ -327,80 +127,139 @@
     </div>
   </section>
 
-  <!-- Các section placeholder -->
-  <section id="intro" style="height:100vh; background:#fafafa; position: relative;">
-    <h1 style="position:absolute; top:100px; left:100px;">GIỚI THIỆU</h1>
-  </section>
-  <section id="food" style="height:100vh; background:#fafafa; position: relative;">
-    <h1 style="position:absolute; top:100px; left:100px;">ẨM THỰC</h1>
-  </section>
-  <section id="culture" style="height:100vh; background:#fafafa; position: relative;">
-    <h1 style="position:absolute; top:100px; left:100px;">VĂN HÓA</h1>
-  </section>
-  <section id="share" style="height:100vh; background:#fafafa; position: relative;">
-    <h1 style="position:absolute; top:100px; left:100px;">CHIA SẺ</h1>
+  <!-- Các section nội dung -->
+  <section id="intro">
+    <!-- Cột văn bản -->
+    <div class="text-content text-content fade-in">
+      <h1>Giới thiệu Bình Định</h1>
+      <p>
+        Bình Định là một tỉnh ven biển thuộc vùng Duyên hải Nam Trung Bộ Việt Nam. Với địa hình đa dạng gồm núi, biển,
+        đồng bằng và sông ngòi, Bình Định sở hữu nhiều cảnh đẹp tự nhiên hoang sơ và hấp dẫn. Nơi đây nổi tiếng với
+        truyền thống võ thuật, các di tích lịch sử, văn hóa đặc sắc và nền ẩm thực phong phú.
+      </p>
+      <p>
+        Thành phố Quy Nhơn – trung tâm của tỉnh – đang phát triển mạnh mẽ về kinh tế, du lịch và giao thương, trở thành
+        điểm đến hấp dẫn cho du khách trong và ngoài nước. Bình Định còn là quê hương của phong trào Tây Sơn và người
+        anh hùng dân tộc Quang Trung Nguyễn Huệ, góp phần làm giàu thêm giá trị lịch sử cho mảnh đất này.
+      </p>
+      <p>
+        Với sự kết hợp hài hòa giữa thiên nhiên, con người và văn hóa, Bình Định đang ngày càng khẳng định vị thế là một
+        vùng đất giàu tiềm năng và thân thiện.
+      </p>
+    </div>
+
+    <div class="scrolling-images">
+      <div class="image">
+        <img src="assets/img/nguyen-davide-wDpRpHypZoc-unsplash.jpg" alt="Hình ảnh Bình Định 1">
+      </div>
+      <div class="image">
+        <img src="assets/img/anh8.jpg" alt="Hình ảnh Bình Định 2">
+      </div>
+      <div class="image">
+        <img src="assets/img/pexels-quang-nguyen-vinh-222549-2133849.jpg" alt="Hình ảnh Bình Định 3">
+      </div>
+      <div class="image">
+        <img src="assets/img/anh-dep-binh-dinh-36.jpg" alt="Hình ảnh Bình Định 5">
+      </div>
+    </div>
   </section>
 
-  <!-- Swiper JS -->
+  <section id="culture" class="text-content fade-in">
+    <div class="image">
+      <img src="assets/img/cuturalbinhdinh1.jpg" alt="Văn hóa Bình Định">
+    </div>
+    <div class="text-content">
+      <h1>Văn hóa & Lịch sử</h1>
+      <p>
+        Bình Định là một vùng đất giàu truyền thống văn hóa và lịch sử, nằm ở miền Trung Việt Nam.
+        Nơi đây từng là trung tâm của vương quốc Champa cổ, để lại nhiều dấu ấn qua các tháp Chăm độc đáo.
+        Bình Định cũng nổi tiếng là quê hương của người anh hùng áo vải Quang Trung - Nguyễn Huệ,
+        gắn liền với nhiều chiến công hiển hách trong lịch sử dân tộc. Không chỉ có bề dày lịch sử,
+        Bình Định còn lưu giữ và phát triển nhiều giá trị văn hóa đặc sắc như võ cổ truyền, nghệ thuật tuồng (hát bội),
+        cùng với đời sống sinh hoạt đậm đà bản sắc miền Trung.
+      </p>
+      <button>
+        KHÁM PHÁ <span class="arrow">→</span>
+      </button>
+    </div>
+  </section>
+
+  <br>
+
+  <section id="location" class="text-content fade-in">
+    <div class="image">
+      <img src="assets/img/photo-1594478851981-65de6e4d0bfd.avif" alt="Điểm đến Bình Định">
+    </div>
+    <div class="text-content">
+      <h1>Điểm đến nổi bật</h1>
+      <p>
+        Bình Định, một viên ngọc của miền Trung Việt Nam,
+        tự hào là vùng đất giao thoa hoàn hảo giữa vẻ đẹp thiên nhiên hùng vĩ và bề dày lịch sử- văn hóa ngàn năm.
+        Đến với Bình Định, du khách sẽ được chiêm ngưỡng những bãi biển Quy Nhơn trong xanh mướt mắt,
+        khám phá vẻ đẹp hoang sơ của Eo Gió - Kỳ Co, hay lạc bước trên con đường
+        biển độc đáo ở Hòn Khô. Không chỉ có vậy, mảnh đất này còn là cái nôi của vương quốc Champa cổ đại
+        với những tháp Chăm uy nghi và là quê hương của người anh hùng áo vải Quang Trung - Nguyễn Huệ,
+        để lại nhiều dấu ấn lịch sử hào hùng. Bình Định hứa hẹn mang đến một hành trình đầy cảm hứng,
+        từ những trải nghiệm thư giãn bên bờ biển đến việc khám phá những giá trị văn hóa và lịch sử sâu sắc.
+      </p>
+      <button>
+        KHÁM PHÁ <span class="arrow">→</span>
+      </button>
+    </div>
+  </section>
+
+  <section id="food" class="text-content fade-in">
+    <div class="image">
+      <img src="assets/img/dac-san-binh-dinh-5.jpg" alt="Món ăn đặc sản" />
+    </div>
+    <div class="text-content">
+      <h1>Ẩm thực Bình Định</h1>
+      <p>
+        Ẩm thực Bình Định mang đậm hương vị miền Trung, kết hợp tinh tế giữa
+        biển cả và đồng quê. Các món ăn nơi đây giản dị nhưng đậm đà bản sắc,
+        phản ánh sự chân thành của người dân. Từ hải sản tươi ngon đến những món
+        truyền thống gắn liền với văn hóa vùng đất võ, tất cả đều tạo nên một
+        trải nghiệm ẩm thực khó quên.
+        Tại đây, bạn sẽ tìm thấy nhiều món ăn ngon và độc đáo, mang đậm
+        hương vị địa phương. Bình Định nổi tiếng với nhiều món đặc sản hấp
+        dẫn. Du khách có thể thưởng thức các món như bún chả cá, tré, bánh
+        hỏi, bánh canh mì, bánh ít lá gai, nem chả chợ huyện và nhiều món
+        khác.
+      </p>
+      <button>
+        KHÁM PHÁ <span class="arrow">→</span>
+      </button>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Về Nhóm Chúng Tôi</h3>
+        <p>Nhóm sinh viên môn Lập trình Web, đam mê khám phá và quảng bá vẻ đẹp Bình Định – vùng đất võ và biển.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Liên Hệ</h3>
+        <p>Email: nhom5@binhdinhtravel.com</p>
+        <p>Điện thoại: 0123 456 789</p>
+        <p>Địa chỉ: Trường Đại học Giao thông vận tải Thành phố Hồ Chí Minh</p>
+      </div>
+      <div class="footer-section">
+        <h3>Theo Dõi Chúng Tôi</h3>
+        <div class="social-links">
+          <a href="#">Facebook</a>
+          <a href="#">Instagram</a>
+          <a href="#">YouTube</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/jquery-3.7.1.min.js"></script>
   <script src="https://unpkg.com/swiper@9/swiper-bundle.min.js"></script>
-  <script>
-    // Navbar đổi style khi scroll
-    const nav = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 50);
-    });
-
-    // Swiper init
-    new Swiper('.swiper', {
-      loop: true,
-      // autoplay: {
-      //   delay: 5000,
-      //   disableOnInteraction: false,
-      // },
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-    });
-
-    // Scroll “Bắt đầu khám phá”
-    document.querySelectorAll('.discover-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.getElementById('intro').scrollIntoView({ behavior: 'smooth' });
-      });
-    });
-
-    // Hamburger menu cho mobile
-    const hamburger = document.getElementById('hamburger');
-    const navMenu  = document.getElementById('nav-menu');
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      navMenu.classList.toggle('open');
-    });
-    document.querySelectorAll('.nav-menu a').forEach(link => {
-      link.addEventListener('click', () => {
-        navMenu.classList.remove('open');
-        hamburger.classList.remove('active');
-      });
-    });
-  </script>
-
-<script>
-  // Khi DOM load xong
-  document.addEventListener('DOMContentLoaded', () => {
-    // Sau 3 giây
-    setTimeout(() => {
-      const mainContent = document.querySelector('.content-main');
-      if (mainContent) {
-        mainContent.classList.add('visible');
-      }
-    }, 5000);
-  });
-</script>
+  <script src="assets/js/main.js"></script>
 
 </body>
+
 </html>
