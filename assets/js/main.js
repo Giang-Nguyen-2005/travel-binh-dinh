@@ -1,5 +1,18 @@
 // Đợi DOM load xong
 $(document).ready(function () {
+  $(".card").on("mouseenter", function () {
+    $(this).find("button").css({
+      opacity: 1,
+      transform: "translateY(-20px)"
+    });
+  });
+
+  $(".card").on("mouseleave", function () {
+    $(this).find("button").css({
+      opacity: 0,
+      transform: "translateY(20px)"
+    });
+  });
   // Navbar đổi style khi scroll
   $(window).on('scroll', function () {
     if ($(window).scrollTop() > 50) {
@@ -48,7 +61,7 @@ $(document).ready(function () {
   // Hiện .content-main sau 5 giây
   setTimeout(function () {
     $('.content-main').addClass('visible');
-  }, 5000);
+  }, 2000);
 
   // Hiện các .image và .text-content khi scroll đến
   function checkVisibility() {

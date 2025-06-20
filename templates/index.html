@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KHÁM PHÁ BÌNH ĐỊNH</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper@9/swiper-bundle.min.css" />
+</head>
+<style>
+  .swiper-slide {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>
+
+<body>
+
+  <!-- Navbar -->
+  <nav id="navbar">
+    <a href="#hero" class="logo">BÌNH ĐỊNH</a>
+    <ul class="nav-menu" id="nav-menu">
+      <li><a href="#intro">GIỚI THIỆU</a></li>
+      <li><a href="#culture">VĂN HÓA</a></li>
+      <li><a href="#location">ĐIỂM ĐẾN</a></li>
+      <li><a href="#food">ẨM THỰC</a></li>
+      <li><a href="#share">CHIA SẺ</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- Hero Slider -->
+  <section id="hero">
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        <!-- Slide 1: Video -->
+        <div class="swiper-slide">
+          <video autoplay muted loop playsinline>
+            <source src="/img/video-nen.mp4" type="video/mp4" />
+          </video>
+          <div class="overlay"></div>
+          <div class="content content-main">
+            <h1>Khám phá Bình Định</h1>
+            <p><span style="font-size: 30px; font-weight: 600;">Hành trình</span> trải nghiệm văn hóa, ẩm thực và cảnh
+              đẹp đất võ</p>
+            <button class="discover-btn">Bắt đầu khám phá</button>
+          </div>
+        </div>
+        <!-- Slide 2: Ảnh -->
+        <div class="swiper-slide">
+          <img src="../assets/img/1.jpg" alt="Bình Định 1" />
+          <div class="overlay"></div>
+          <div class="content">
+            <h1>Khám phá Bình Định</h1>
+            <p><span style="font-size: 30px; font-weight: 600;">Hành trình</span> trải nghiệm văn hóa, ẩm thực và cảnh
+              đẹp đất võ</p>
+            <button class="discover-btn">Bắt đầu khám phá</button>
+          </div>
+        </div>
+        <!-- Slide 3: Ảnh -->
+        <div class="swiper-slide">
+          <img src="../assets/img/2.jpg" alt="Bình Định 2" />
+          <div class="overlay"></div>
+          <div class="content">
+            <h1>Khám phá Bình Định</h1>
+            <p><span style="font-size: 30px; font-weight: 600;">Hành trình</span> trải nghiệm văn hóa, ẩm thực và cảnh
+              đẹp đất võ</p>
+            <button class="discover-btn">Bắt đầu khám phá</button>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <img src="../assets/img/3.jpg" alt="Bình Định 3" />
+          <div class="overlay"></div>
+          <div class="content">
+            <h1>Khám phá Bình Định</h1>
+            <p><span style="font-size: 30px; font-weight: 600;">Hành trình</span> trải nghiệm văn hóa, ẩm thực và cảnh
+              đẹp đất võ</p>
+            <button class="discover-btn">Bắt đầu khám phá</button>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <img src="../assets/img/4.jpg" alt="Bình Định 4" />
+          <div class="overlay"></div>
+          <div class="content">
+            <h1>Khám phá Bình Định</h1>
+            <p><span style="font-size: 30px; font-weight: 600;">Hành trình</span> trải nghiệm văn hóa, ẩm thực và cảnh
+              đẹp đất võ</p>
+            <button class="discover-btn">Bắt đầu khám phá</button>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <img src="../assets/img/5.jpg" alt="Bình Định 5" />
+          <div class="overlay"></div>
+          <div class="content">
+            <h1>Khám phá Bình Định</h1>
+            <p><span style="font-size: 30px; font-weight: 600;">Hành trình</span> trải nghiệm văn hóa, ẩm thực và cảnh
+              đẹp đất võ</p>
+            <button class="discover-btn">Bắt đầu khám phá</button>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <img src="../assets/img/6.jpg" alt="Bình Định 6" />
+          <div class="overlay"></div>
+          <div class="content">
+            <h1>Khám phá Bình Định</h1>
+            <p><span style="font-size: 30px; font-weight: 600;">Hành trình</span> trải nghiệm văn hóa, ẩm thực và cảnh
+              đẹp đất võ</p>
+            <button class="discover-btn">Bắt đầu khám phá</button>
+          </div>
+        </div>
+      </div>
+      <!-- Pagination & Navigation -->
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+  </section>
+
+  <!-- Các section nội dung -->
+  <section id="intro">
+    <!-- Cột văn bản -->
+    <div class="text-content text-content fade-in">
+      <br /><br />
+      <h1>Giới thiệu Bình Định</h1>
+      <p>
+        Bình Định là một tỉnh ven biển thuộc vùng Duyên hải Nam Trung Bộ Việt Nam. Với địa hình đa dạng gồm núi, biển,
+        đồng bằng và sông ngòi, Bình Định sở hữu nhiều cảnh đẹp tự nhiên hoang sơ và hấp dẫn. Nơi đây nổi tiếng với
+        truyền thống võ thuật, các di tích lịch sử, văn hóa đặc sắc và nền ẩm thực phong phú.
+      </p>
+      <p>
+        Thành phố Quy Nhơn – trung tâm của tỉnh – đang phát triển mạnh mẽ về kinh tế, du lịch và giao thương, trở thành
+        điểm đến hấp dẫn cho du khách trong và ngoài nước. Bình Định còn là quê hương của phong trào Tây Sơn và người
+        anh hùng dân tộc Quang Trung Nguyễn Huệ, góp phần làm giàu thêm giá trị lịch sử cho mảnh đất này.
+      </p>
+      <p>
+        Với sự kết hợp hài hòa giữa thiên nhiên, con người và văn hóa, Bình Định đang ngày càng khẳng định vị thế là một
+        vùng đất giàu tiềm năng và thân thiện.
+      </p>
+    </div>
+
+    <div class="scrolling-images">
+      <div class="image">
+        <img src="../assets/img/nguyen-davide-wDpRpHypZoc-unsplash.jpg" alt="Hình ảnh Bình Định 1">
+      </div>
+      <div class="image">
+        <img src="../assets/img/anh8.jpg" alt="Hình ảnh Bình Định 2">
+      </div>
+      <div class="image">
+        <img src="../assets/img/pexels-quang-nguyen-vinh-222549-2133849.jpg" alt="Hình ảnh Bình Định 3">
+      </div>
+      <div class="image">
+        <img src="../assets/img/anh-dep-binh-dinh-36.jpg" alt="Hình ảnh Bình Định 5">
+      </div>
+    </div>
+  </section>
+
+  <section id="culture" class="text-content fade-in">
+    <div class="image">
+      <img src="../assets/img/cuturalbinhdinh1.jpg" alt="Văn hóa Bình Định">
+    </div>
+    <div class="text-content">
+      <h1>Văn hóa & Lịch sử</h1>
+      <p>
+        Bình Định là một vùng đất giàu truyền thống văn hóa và lịch sử, nằm ở miền Trung Việt Nam.
+        Nơi đây từng là trung tâm của vương quốc Champa cổ, để lại nhiều dấu ấn qua các tháp Chăm độc đáo.
+        Bình Định cũng nổi tiếng là quê hương của người anh hùng áo vải Quang Trung - Nguyễn Huệ,
+        gắn liền với nhiều chiến công hiển hách trong lịch sử dân tộc. Không chỉ có bề dày lịch sử,
+        Bình Định còn lưu giữ và phát triển nhiều giá trị văn hóa đặc sắc như võ cổ truyền, nghệ thuật tuồng (hát bội),
+        cùng với đời sống sinh hoạt đậm đà bản sắc miền Trung.
+      </p>
+      <button>
+        KHÁM PHÁ <span class="arrow">→</span>
+      </button>
+    </div>
+  </section>
+
+  <br>
+
+  <section id="location" class="text-content fade-in">
+    <div class="image">
+      <img src="../assets/img/photo-1594478851981-65de6e4d0bfd.avif" alt="Điểm đến Bình Định">
+    </div>
+    <div class="text-content">
+      <h1>Điểm đến nổi bật</h1>
+      <p>
+        Bình Định, một viên ngọc của miền Trung Việt Nam,
+        tự hào là vùng đất giao thoa hoàn hảo giữa vẻ đẹp thiên nhiên hùng vĩ và bề dày lịch sử- văn hóa ngàn năm.
+        Đến với Bình Định, du khách sẽ được chiêm ngưỡng những bãi biển Quy Nhơn trong xanh mướt mắt,
+        khám phá vẻ đẹp hoang sơ của Eo Gió - Kỳ Co, hay lạc bước trên con đường
+        biển độc đáo ở Hòn Khô. Không chỉ có vậy, mảnh đất này còn là cái nôi của vương quốc Champa cổ đại
+        với những tháp Chăm uy nghi và là quê hương của người anh hùng áo vải Quang Trung - Nguyễn Huệ,
+        để lại nhiều dấu ấn lịch sử hào hùng. Bình Định hứa hẹn mang đến một hành trình đầy cảm hứng,
+        từ những trải nghiệm thư giãn bên bờ biển đến việc khám phá những giá trị văn hóa và lịch sử sâu sắc.
+      </p>
+      <button>
+        KHÁM PHÁ <span class="arrow">→</span>
+      </button>
+    </div>
+  </section>
+
+  <section id="food" class="text-content fade-in">
+    <div class="image">
+      <img src="../assets/img/dac-san-binh-dinh-5.jpg" alt="Món ăn đặc sản" />
+    </div>
+    <div class="text-content">
+      <h1>Ẩm thực Bình Định</h1>
+      <p>
+        Ẩm thực Bình Định mang đậm hương vị miền Trung, kết hợp tinh tế giữa
+        biển cả và đồng quê. Các món ăn nơi đây giản dị nhưng đậm đà bản sắc,
+        phản ánh sự chân thành của người dân. Từ hải sản tươi ngon đến những món
+        truyền thống gắn liền với văn hóa vùng đất võ, tất cả đều tạo nên một
+        trải nghiệm ẩm thực khó quên.
+        Tại đây, bạn sẽ tìm thấy nhiều món ăn ngon và độc đáo, mang đậm
+        hương vị địa phương. Bình Định nổi tiếng với nhiều món đặc sản hấp
+        dẫn. Du khách có thể thưởng thức các món như bún chả cá, tré, bánh
+        hỏi, bánh canh mì, bánh ít lá gai, nem chả chợ huyện và nhiều món
+        khác.
+      </p>
+      <button>
+        KHÁM PHÁ <span class="arrow">→</span>
+      </button>
+    </div>
+  </section>
+  <section class="explore-section">
+    <h1>KHÁM PHÁ THÊM VỀ BÌNH ĐỊNH</h1>
+    <div class="explore-grid">
+      <div class="card">
+        <img src="../assets/img/anh-dep-binh-dinh-36.jpg" alt="Sightseeing">
+        <div class="card-content">
+          <h2>CẨM NANG DU LỊCH</h2>
+          <a href="cam_nang_du_lich.html"><button>KHÁM PHÁ</button></a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="../assets/img/nguyen-davide-wDpRpHypZoc-unsplash.jpg" alt="Adventure">
+        <div class="card-content">
+          <h2>CHIA SẺ & TRẢI NGHIỆM</h2>
+          <button>KHÁM PHÁ</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="../assets/img/pexels-quang-nguyen-vinh-222549-2133849.jpg" alt="Wellness">
+        <div class="card-content">
+          <h2>SỰ KIỆN & LỄ HỘI</h2>
+          <button>KHÁM PHÁ</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="subscribe-section">
+    <img src="../assets/img/anh-dep-binh-dinh-36.jpg"  class="background-img">
+
+    <div class="subscribe-content">
+      <h2>Đăng ký để không bỏ lỡ điều thú vị</h2>
+      <p>Nhận thông tin về sự kiện sắp tới, mẹo du lịch và những chia sẻ thú vị từ Bình Định.</p>
+      <form class="subscribe-form">
+        <input type="email" placeholder="email@gmail.com" required />
+        <button type="submit">ĐĂNG KÝ</button>
+      </form>
+    </div>
+  </section>
+
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Về Nhóm Chúng Tôi</h3>
+        <p>Nhóm sinh viên môn Lập trình Web, đam mê khám phá và quảng bá vẻ đẹp Bình Định – vùng đất võ và biển.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Liên Hệ</h3>
+        <p>Email: nhom5@binhdinhtravel.com</p>
+        <p>Điện thoại: 0123 456 789</p>
+        <p>Địa chỉ: Trường Đại học Giao thông vận tải Thành phố Hồ Chí Minh</p>
+      </div>
+      <div class="footer-section">
+        <h3>Theo Dõi Chúng Tôi</h3>
+        <div class="social-links">
+          <a href="#">Facebook</a>
+          <a href="#">Instagram</a>
+          <a href="#">YouTube</a>
+        </div>
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Scripts -->
+  <script src="../assets/js/jquery-3.7.1.min.js"></script>
+  <script src="https://unpkg.com/swiper@9/swiper-bundle.min.js"></script>
+  <script src="../assets/js/main.js"></script>
+
+</body>
+
+</html>
