@@ -7,7 +7,7 @@ include '../includes/hero_banner.php';
 ?>
 
 <section class="explore-section">
-    <h1>Điểm đến nổi bật</h1>
+    <h1>ĐIỂM ĐẾN NỔI BẬT</h1>
     <div class="explore-grid">
         <?php
         $link = mysqli_connect("localhost", "root", "", "travel_binh_dinh", 3307);
