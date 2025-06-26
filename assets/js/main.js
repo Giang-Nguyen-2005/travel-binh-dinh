@@ -61,7 +61,7 @@ $(document).ready(function () {
   // Hiện .content-main sau 5 giây
   setTimeout(function () {
     $('.content-main').addClass('visible');
-  }, 2000);
+  }, 5000);
 
   // Hiện các .image và .text-content khi scroll đến
   function checkVisibility() {
