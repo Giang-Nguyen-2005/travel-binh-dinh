@@ -11,7 +11,6 @@ include '../includes/hero_banner.php';
     <h1>ẨM THỰC BÌNH ĐỊNH</h1>
     <div class="explore-grid">
         <?php
-        // Kết nối CSDL
         $link = mysqli_connect("localhost", "root", "", "travel_binh_dinh", 3307);
         if (!$link) {
             die("Kết nối thất bại: " . mysqli_connect_error());
