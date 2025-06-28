@@ -11,7 +11,8 @@ include '../includes/hero_banner.php';
     <div class="explore-grid">
         <?php
         $link = mysqli_connect("localhost", "root", "", "travel_binh_dinh", 3307);
-        $sql = "SELECT * FROM bai_viet ORDER BY ngay_tao DESC";
+       $sql = "SELECT * FROM bai_viet WHERE danh_muc_id = 2 ORDER BY ngay_tao DESC";
+
         $result = mysqli_query($link, $sql);
         while ($row = mysqli_fetch_assoc($result)) :
         ?>
