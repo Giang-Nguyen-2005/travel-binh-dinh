@@ -58,10 +58,10 @@ $(document).ready(function () {
     $('#hamburger').removeClass('active');
   });
 
-  // Hiện .content-main sau 5 giây
+  // Hiện .content-main sau 2 giây
   setTimeout(function () {
     $('.content-main').addClass('visible');
-  }, 5000);
+  }, 2000);
 
   // Hiện các .image và .text-content khi scroll đến
   function checkVisibility() {
@@ -77,4 +77,15 @@ $(document).ready(function () {
   // Gọi hàm kiểm tra visibility khi scroll và khi trang load
   $(window).on('scroll', checkVisibility);
   checkVisibility();
+  $('#account-toggle').on('click', function (e) {
+    e.preventDefault();
+    $('#account-menu').toggleClass('show');
+  });
+
+  // Tự động ẩn khi click ra ngoài
+  $(document).on('click', function (e) {
+    if (!$(e.target).closest('#account-toggle, #account-menu').length) {
+      $('#account-menu').removeClass('show');
+    }
+  });
 });

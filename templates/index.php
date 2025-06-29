@@ -65,7 +65,7 @@
 
 <section id="location" class="text-content fade-in">
     <div class="image">
-        <img src="../assets/img/diem_den.avif" alt="Điểm đến Bình Định">
+        <img src="../assets/img/diem_den.jpg" alt="Điểm đến Bình Định">
     </div>
     <div class="text-content">
         <h1>Điểm đến nổi bật</h1>
@@ -116,7 +116,7 @@
     <h1>KHÁM PHÁ THÊM VỀ BÌNH ĐỊNH</h1>
     <div class="explore-grid">
         <div class="card">
-            <img src="../assets/img/anh-dep-binh-dinh-36.jpg" alt="Sightseeing">
+            <img src="../assets/img/cam_nang_du_lich.avif" alt="Sightseeing">
             <div class="card-content">
                 <h2>CẨM NANG DU LỊCH</h2>
                 <a href="cam_nang_du_lich.php"><button>KHÁM PHÁ</button></a>
@@ -124,7 +124,7 @@
         </div>
 
         <div class="card">
-            <img src="../assets/img/Chia_se_va_trai_nghiem.jpg" alt="Adventure">
+            <img src="../assets/img/Chia_se.avif" alt="Adventure">
             <div class="card-content">
                 <h2>CHIA SẺ & TRẢI NGHIỆM</h2>
                 <a href="blog.php"><button>KHÁM PHÁ</button></a>

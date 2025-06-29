@@ -3,7 +3,7 @@
     <div class="swiper-wrapper">
       <div class="swiper-slide">
         <video autoplay muted loop playsinline>
-          <source src="../assets/img/video_nen.mp4" type="video/mp4">
+          <source src="../assets/img/video_nen.mov" type="video/mp4">
         </video>
         <div class="overlay"></div>
         <div class="content content-main">

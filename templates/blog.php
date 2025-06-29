@@ -1,5 +1,5 @@
 <?php
-$heroImage = "../assets/img/Chia_se_va_trai_nghiem.jpg"; 
+$heroImage = "../assets/img/Chia_se.avif"; 
 $heroTitle = "CHIA SẺ & TRẢI NGHIỆM";
 $heroDesc = "Khám phá Bình Định qua những trải nghiệm chân thật từ du khách và người dân địa phương.";
 

@@ -1,5 +1,5 @@
 <?php
-$heroImage = "../assets/img/diem_den.avif"; 
+$heroImage = "../assets/img/diem_den.jpg"; 
 $heroTitle = "ĐIỂM ĐẾN";
 $heroDesc = "Khám phá vẻ đẹp của Bình Định qua những điểm đến";
 include '../includes/header.php';

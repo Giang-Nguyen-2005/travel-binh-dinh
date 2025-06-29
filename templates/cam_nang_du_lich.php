@@ -1,5 +1,5 @@
 <?php
-$heroImage = "../assets/img/anh-dep-binh-dinh-36.jpg"; 
+$heroImage = "../assets/img/cam_nang_du_lich.avif"; 
 $heroTitle = "CẨM NANG DU LỊCH";
 $heroDesc = "Tất tần tật kinh nghiệm du lịch Bình Định dành cho bạn";
 

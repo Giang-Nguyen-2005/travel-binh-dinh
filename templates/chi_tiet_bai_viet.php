@@ -10,6 +10,7 @@ if ($row = mysqli_fetch_array($result)) {
     $heroImage = "../assets/img/" . $row['hinh_anh'];
     $heroTitle = $row['tieu_de'];
     $heroDesc = $row['mo_ta'];
+    $danh_muc_id = $row['danh_muc_id'];
     include '../includes/hero_banner.php';
 ?>
     <section class="content-wrapper">
@@ -19,9 +20,10 @@ if ($row = mysqli_fetch_array($result)) {
         </div>
 
         <aside class="right-sidebar">
-            <h3>Bài viết khác</h3>
+            <h3>Bài viết khác cùng chủ đề</h3>
             <?php
-            $sql_khac = "SELECT id, tieu_de, hinh_anh FROM bai_viet WHERE id != $id ORDER BY ngay_tao DESC LIMIT 5";
+            $sql_khac = "SELECT id, tieu_de, hinh_anh FROM bai_viet WHERE id != $id AND danh_muc_id = $danh_muc_id 
+                         ORDER BY ngay_tao DESC LIMIT 5";
             $result_khac = mysqli_query($link, $sql_khac);
             while ($khac = mysqli_fetch_array($result_khac)) :
             ?>
