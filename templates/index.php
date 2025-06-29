@@ -135,7 +135,7 @@
             <img src="../assets/img/pexels-quang-nguyen-vinh-222549-2133849.jpg" alt="Wellness">
             <div class="card-content">
                 <h2>SỰ KIỆN & LỄ HỘI</h2>
-                <button>KHÁM PHÁ</button>
+                <a href="le_hoi.php"><button>KHÁM PHÁ</button></a>
             </div>
         </div>
     </div>
