@@ -25,13 +25,13 @@
 
     <div class="scrolling-images">
         <div class="image">
-            <img src="../assets/img/nguyen-davide-wDpRpHypZoc-unsplash.jpg" alt="Hình ảnh Bình Định 1">
+            <img src="../assets/img/diem_den.jpg" alt="Hình ảnh Bình Định 1">
         </div>
         <div class="image">
             <img src="../assets/img/anh8.jpg" alt="Hình ảnh Bình Định 2">
         </div>
         <div class="image">
-            <img src="../assets/img/pexels-quang-nguyen-vinh-222549-2133849.jpg" alt="Hình ảnh Bình Định 3">
+            <img src="../assets/img/le_hoi.jpg" alt="Hình ảnh Bình Định 3">
         </div>
         <div class="image">
             <img src="../assets/img/anh-dep-binh-dinh-36.jpg" alt="Hình ảnh Bình Định 5">
@@ -124,7 +124,7 @@
         </div>
 
         <div class="card">
-            <img src="../assets/img/nguyen-davide-wDpRpHypZoc-unsplash.jpg" alt="Adventure">
+            <img src="../assets/img/Chia_se_va_trai_nghiem.jpg" alt="Adventure">
             <div class="card-content">
                 <h2>CHIA SẺ & TRẢI NGHIỆM</h2>
                 <a href="blog.php"><button>KHÁM PHÁ</button></a>
@@ -132,7 +132,7 @@
         </div>
 
         <div class="card">
-            <img src="../assets/img/pexels-quang-nguyen-vinh-222549-2133849.jpg" alt="Wellness">
+            <img src="../assets/img/le_hoi.jpg" alt="Wellness">
             <div class="card-content">
                 <h2>SỰ KIỆN & LỄ HỘI</h2>
                 <a href="le_hoi.php"><button>KHÁM PHÁ</button></a>
