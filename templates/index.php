@@ -113,6 +113,8 @@
     </div>
 </section>
 <section class="explore-section">
+   
+
     <h1>KHÁM PHÁ THÊM VỀ BÌNH ĐỊNH</h1>
     <div class="explore-grid">
         <div class="card">
@@ -142,3 +144,4 @@
 </section>
 <?php include("../includes/dang_ky.php") ?>
 <?php include("../includes/footer.php") ?>
+
