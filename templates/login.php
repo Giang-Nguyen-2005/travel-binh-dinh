@@ -6,19 +6,26 @@ $error = '';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
-
-    // Đăng nhập người dùng (không mã hoá mật khẩu)
-    $sql = "SELECT * FROM user WHERE username = '$username' AND password = '$password'";
+    
+    // Lấy thông tin người dùng theo username
+    $sql = "SELECT * FROM user WHERE username = '$username'";
     $result = mysqli_query($link, $sql);
 
     if (mysqli_num_rows($result) == 1) {
-        $_SESSION['user'] = $username;
-        header('Location: index.php'); // chuyển về trang chính người dùng
-        exit;
+        $user = mysqli_fetch_assoc($result);
+        // So sánh mật khẩu nhập vào với mật khẩu đã mã hóa
+        if (password_verify($password, $user['password'])) {
+            $_SESSION['user'] = $username;
+            header('Location: index.php');
+            exit;
+        } else {
+            $error = "Tên đăng nhập hoặc mật khẩu không đúng.";
+        }
     } else {
         $error = "Tên đăng nhập hoặc mật khẩu không đúng.";
     }
 }
+
 ?>
 
 <?php include('../includes/header.php'); ?>

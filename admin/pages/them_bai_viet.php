@@ -4,77 +4,57 @@
 $link = mysqli_connect("localhost", "root", "", "travel_binh_dinh", 3307);
 mysqli_set_charset($link, "utf8");
 
-// Lấy id bài viết
-$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
-if ($id <= 0) {
-    echo "ID không hợp lệ.";
-    exit;
-}
-
-// Lấy dữ liệu bài viết
-$result = mysqli_query($link, "SELECT * FROM bai_viet WHERE id = $id");
-$row = mysqli_fetch_assoc($result);
+$thong_bao = '';
 
 // Lấy danh sách danh mục
 $danh_muc_result = mysqli_query($link, "SELECT * FROM danh_muc");
 
-// Xử lý khi submit form
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $tieu_de = mysqli_real_escape_string($link, $_POST['tieu_de']);
     $mo_ta = mysqli_real_escape_string($link, $_POST['mo_ta']);
     $noi_dung = mysqli_real_escape_string($link, $_POST['noi_dung']);
     $danh_muc_id = intval($_POST['danh_muc_id']);
+    $ngay_tao = date('Y-m-d H:i:s');
+    $trang_thai = 'cho_duyet'; // Mặc định
 
     // Xử lý ảnh
-    $hinh_anh = $row['hinh_anh'];
+    $hinh_anh = '';
     if (!empty($_FILES['hinh_anh']['name'])) {
         $hinh_anh = basename($_FILES['hinh_anh']['name']);
         move_uploaded_file($_FILES['hinh_anh']['tmp_name'], "../../assets/img/" . $hinh_anh);
     }
 
-    // Cập nhật
-    $sql = "UPDATE bai_viet SET 
-        tieu_de = '$tieu_de',
-        mo_ta = '$mo_ta',
-        noi_dung = '$noi_dung',
-        hinh_anh = '$hinh_anh',
-        danh_muc_id = $danh_muc_id
-        WHERE id = $id";
+    $sql = "INSERT INTO bai_viet (tieu_de, mo_ta, noi_dung, hinh_anh, danh_muc_id, ngay_tao, trang_thai)
+            VALUES ('$tieu_de', '$mo_ta', '$noi_dung', '$hinh_anh', $danh_muc_id, '$ngay_tao', '$trang_thai')";
     mysqli_query($link, $sql);
-
     header("Location: ../index.php");
     exit;
 }
 ?>
 
-<h2>Sửa bài viết</h2>
+<h2>Thêm bài viết mới</h2>
 <form method="POST" enctype="multipart/form-data">
     <label>Tiêu đề:</label><br>
-    <input type="text" name="tieu_de" value="<?= htmlspecialchars($row['tieu_de']) ?>" required><br><br>
+    <input type="text" name="tieu_de" required><br><br>
 
     <label>Mô tả:</label><br>
-    <textarea name="mo_ta" rows="4" required><?= htmlspecialchars($row['mo_ta']) ?></textarea><br><br>
+    <textarea name="mo_ta" rows="4" required></textarea><br><br>
 
     <label>Nội dung:</label><br>
-    <textarea id="noi_dung" name="noi_dung" rows="8" required><?= htmlspecialchars($row['noi_dung']) ?></textarea><br><br>
+    <textarea id="noi_dung" name="noi_dung" rows="8" required></textarea><br><br>
 
     <label>Danh mục:</label><br>
     <select name="danh_muc_id" required>
+        <option value="">-- Chọn danh mục --</option>
         <?php while ($dm = mysqli_fetch_assoc($danh_muc_result)): ?>
-            <option value="<?= $dm['id'] ?>" <?= $dm['id'] == $row['danh_muc_id'] ? 'selected' : '' ?>>
-                <?= htmlspecialchars($dm['ten']) ?>
-            </option>
+            <option value="<?= $dm['id'] ?>"><?= htmlspecialchars($dm['ten']) ?></option>
         <?php endwhile; ?>
     </select><br><br>
 
     <label>Hình ảnh:</label><br>
-    <input type="file" name="hinh_anh"><br>
-    <?php if (!empty($row['hinh_anh'])): ?>
-        <img src="../assets/img/<?= htmlspecialchars($row['hinh_anh']) ?>" width="150"><br>
-    <?php endif; ?>
-    <br>
+    <input type="file" name="hinh_anh"><br><br>
 
-    <button type="submit">Cập nhật bài viết</button>
+    <button type="submit">Lưu bài viết</button>
 </form>
 </div>
 

@@ -34,11 +34,14 @@
   <nav id="navbar">
     <a href="../templates/index.php" class="logo">BÌNH ĐỊNH</a>
     <ul class="nav-menu" id="nav-menu">
-      <li><a href="#intro">GIỚI THIỆU</a></li>
       <li><a href="../templates/van_hoa.php">VĂN HÓA</a></li>
       <li><a href="../templates/diem_den.php">ĐIỂM ĐẾN</a></li>
       <li><a href="../templates/am_thuc.php">ẨM THỰC</a></li>
       <li><a href="../templates/blog.php">CHIA SẺ</a></li>
+      <li> <form class="search-form" method="GET" action="../templates/search.php">
+      <input type="text" name="q" placeholder="Tìm bài viết..." required>
+      <button type="submit"><i class="fas fa-search"></i></button>
+    </form></li>
 
       <li class="account-link">
         <a href="#" id="account-toggle"><i class="fas fa-user-circle"></i></a>
@@ -54,6 +57,7 @@
       </li>
 
     </ul>
+
 
     <div class="hamburger" id="hamburger">
       <span></span><span></span><span></span>

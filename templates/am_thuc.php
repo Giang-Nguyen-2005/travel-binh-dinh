@@ -1,25 +1,21 @@
 <?php
 $heroImage = "../assets/img/dac-san-binh-dinh-5.jpg"; 
 $heroTitle = "CẨM NANG ẨM THỰC";
-$heroDesc = "Khám phá tinh hoa ẩm thực Bình Định qua những món ăn đậm chất miền Trung.";
-
+$heroDesc = "Khám phá tinh hoa ẩm thực Bình Định qua những món ăn đậm chất miền Trung";
 include '../includes/header.php';
 include '../includes/hero_banner.php';
+include '../includes/db.php';
+include '../includes/pagination.php';
 ?>
 
 <section class="explore-section">
     <h1>ẨM THỰC BÌNH ĐỊNH</h1>
     <div class="explore-grid">
         <?php
-        $link = mysqli_connect("localhost", "root", "", "travel_binh_dinh", 3307);
-        if (!$link) {
-            die("Kết nối thất bại: " . mysqli_connect_error());
-        }
-        mysqli_set_charset($link, "utf8");
-
-       
-        $sql = "SELECT * FROM bai_viet WHERE danh_muc_id = 3 ORDER BY ngay_tao DESC";
-        $result = mysqli_query($link, $sql);
+        $pagination_data = get_paginated_posts($link, 3);
+        $result = $pagination_data['posts'];
+        $current_page = $pagination_data['current_page'];
+        $total_pages = $pagination_data['total_pages'];
 
         while ($row = mysqli_fetch_assoc($result)) :
         ?>
@@ -32,9 +28,13 @@ include '../includes/hero_banner.php';
                     </div>
                 </div>
             </a>
-        <?php endwhile; ?>
-        <?php mysqli_close($link); ?>
+        <?php 
+        endwhile;
+        mysqli_free_result($result);
+        mysqli_close($link);
+        ?>
     </div>
+    <?php display_pagination($current_page, $total_pages, 'am_thuc.php'); ?>
 </section>
 
 <?php include '../includes/dang_ky.php'; ?>

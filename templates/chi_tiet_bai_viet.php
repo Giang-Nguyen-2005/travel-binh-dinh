@@ -22,7 +22,7 @@ if ($row = mysqli_fetch_array($result)) {
         <aside class="right-sidebar">
             <h3>Bài viết khác cùng chủ đề</h3>
             <?php
-            $sql_khac = "SELECT id, tieu_de, hinh_anh FROM bai_viet WHERE id != $id AND danh_muc_id = $danh_muc_id 
+            $sql_khac = "SELECT id, tieu_de, hinh_anh FROM bai_viet WHERE id != $id AND danh_muc_id = $danh_muc_id AND trang_thai='da_duyet'
                          ORDER BY ngay_tao DESC LIMIT 5";
             $result_khac = mysqli_query($link, $sql_khac);
             while ($khac = mysqli_fetch_array($result_khac)) :

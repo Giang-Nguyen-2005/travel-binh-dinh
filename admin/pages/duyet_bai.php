@@ -1,12 +1,9 @@
 <?php
-// Kết nối MySQL
 $link = mysqli_connect("localhost", "root", "", "travel_binh_dinh", 3307);
-if (!$link) {
-    die("Kết nối thất bại: " . mysqli_connect_error());
-}
+mysqli_set_charset($link, "utf8");
 
-// Xử lý duyệt hoặc từ chối
-if (isset($_GET['action']) && isset($_GET['id'])) {
+// Xử lý duyệt hoặc từ chối bài viết
+if (isset($_GET['action'], $_GET['id'])) {
     $id = intval($_GET['id']);
     $action = $_GET['action'];
 
@@ -16,79 +13,58 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
         $trang_thai = 'tu_choi';
     }
 
-    $sql_update = "UPDATE bai_viet SET trang_thai = ? WHERE id = ?";
-    $stmt = mysqli_prepare($link, $sql_update);
-    mysqli_stmt_bind_param($stmt, 'si', $trang_thai, $id);
-    mysqli_stmt_execute($stmt);
-    header("Location: duyet_bai.php");
-    exit();
+    if (isset($trang_thai)) {
+        $stmt = mysqli_prepare($link, "UPDATE bai_viet SET trang_thai = ? WHERE id = ?");
+        mysqli_stmt_bind_param($stmt, "si", $trang_thai, $id);
+
+        if (mysqli_stmt_execute($stmt)) {
+            echo "<script>alert('Cập nhật thành công!'); window.location.href = 'duyet_bai.php';</script>";
+            exit();
+        } else {
+            echo "<div style='color: red;'>Lỗi cập nhật: " . mysqli_error($link) . "</div>";
+        }
+    }
 }
 
-// Lọc theo trạng thái
-$trang_thai_filter = isset($_GET['trang_thai']) ? $_GET['trang_thai'] : '';
-$valid_trang_thai = ['cho_duyet', 'da_duyet', 'tu_choi'];
+// Truy vấn danh sách các bài viết đang chờ duyệt và username
+$sql= "SELECT bv.id, bv.tieu_de, bv.mo_ta, bv.ngay_tao, u.username 
+             FROM bai_viet bv 
+             JOIN user u ON bv.id_user = u.id 
+             WHERE bv.trang_thai = 'cho_duyet'
+             ORDER BY bv.ngay_tao DESC";
+$result = mysqli_query($link, $sql);
 
-if ($trang_thai_filter && in_array($trang_thai_filter, $valid_trang_thai)) {
-    $sql = "SELECT * FROM bai_viet WHERE danh_muc_id = 6 AND trang_thai = ?";
-    $stmt = mysqli_prepare($link, $sql);
-    mysqli_stmt_bind_param($stmt, 's', $trang_thai_filter);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
-} else {
-    // Mặc định: hiển thị tất cả trạng thái
-    $sql = "SELECT * FROM bai_viet WHERE danh_muc_id = 6";
-    $result = mysqli_query($link, $sql);
-}
+
 ?>
 
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <title>Duyệt bài chia sẻ</title>
-    <link rel="stylesheet" href="../assets/css/admin-style.css">
-</head>
-<body>
 <div class="main-content">
-    <h2>Duyệt bài chia sẻ</h2>
+    <h2>Danh sách bài viết chờ duyệt</h2>
 
-    <form method="GET" style="margin-bottom: 20px;">
-        <label for="trang_thai">Lọc theo trạng thái: </label>
-        <select name="trang_thai" id="trang_thai" onchange="this.form.submit()">
-            <option value="">-- Tất cả --</option>
-            <option value="cho_duyet" <?php if ($trang_thai_filter == 'cho_duyet') echo 'selected'; ?>>Chờ duyệt</option>
-            <option value="da_duyet" <?php if ($trang_thai_filter == 'da_duyet') echo 'selected'; ?>>Đã duyệt</option>
-            <option value="tu_choi" <?php if ($trang_thai_filter == 'tu_choi') echo 'selected'; ?>>Từ chối</option>
-        </select>
-    </form>
-    
-    <table border="1" cellspacing="0" cellpadding="10">
-        <tr>
-            <th>ID</th>
-            <th>Tiêu đề</th>
-            <th>Nội dung</th>
-            <th>Trạng thái</th>
-            <th>Hành động</th>
-        </tr>
-        <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-        <tr>
-            <td><?php echo $row['id']; ?></td>
-            <td><?php echo htmlspecialchars($row['tieu_de']); ?></td>
-            <td><?php echo htmlspecialchars(mb_strimwidth($row['noi_dung'], 0, 100, "...")); ?></td>
-            <td><?php echo $row['trang_thai']; ?></td>
-            <td>
-                <?php if ($row['trang_thai'] == 'cho_duyet') { ?>
-                    <a href="?action=duyet&id=<?php echo $row['id']; ?>" style="color: green;">Duyệt</a> |
-                    <a href="?action=tu_choi&id=<?php echo $row['id']; ?>" style="color: red;">Từ chối</a>
-                <?php } else {
-                    echo 'Đã xử lý';
-                } ?>
-            </td>
-        </tr>
-        <?php } ?>
-    </table>
+    <?php if (mysqli_num_rows($result) > 0): ?>
+        <table border="1" cellspacing="0" cellpadding="10">
+            <tr>
+                <th>ID</th>
+                <th>Tiêu đề</th>
+                <th>Mô tả</th>
+                <th>Ngày tạo</th>
+                <th>Người đăng</th>
+                <th>Hành động</th>
+            </tr>
+            <?php while ($row = mysqli_fetch_assoc($result)): ?>
+                <tr>
+                    <td><?= $row['id'] ?></td>
+                    <td><?= htmlspecialchars($row['tieu_de']) ?></td>
+                    <td><?= htmlspecialchars($row['mo_ta']) ?></td>
+                    <td><?= date('d/m/Y H:i', strtotime($row['ngay_tao'])) ?></td>
+                    <td><?= htmlspecialchars($row['username']) ?></td>
+                    <td>
+                        <a href="pages/xem_bai_duyet.php?id=<?= $row['id'] ?>" class="ajax-link" style="color: #0a7bff;">🔍 Xem bài</a>
+                    </td>
+                </tr>
+            <?php endwhile; ?>
+
+        </table>
+    <?php else: ?>
+        <p>Không có bài viết nào đang chờ duyệt.</p>
+    <?php endif; ?>
 </div>
-
-<?php include_once('../includes/footer.php'); ?>
-</body>
-</html>

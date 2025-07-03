@@ -19,24 +19,31 @@
   <?php include 'includes/footer.php'; ?>
 
   <script>
-    $(document).ready(function() {
-      // Load mặc định trang chủ nếu cần
-       $('#main-content').load('pages/home.php');
+  $(document).ready(function () {
+    // Kiểm tra xem có trang lưu trong localStorage không
+    const savedPage = localStorage.getItem('currentPage') || 'pages/home.php';
+    $('#main-content').load(savedPage);
 
-      // Load nội dung tương ứng khi click menu
-      $('.admin-sidebar a').click(function(e) {
-        e.preventDefault();
-        const page = $(this).attr('href');
-        $('#main-content').load(page);
-      });
-      $(document).on('click', '.ajax-link', function(e) {
-        e.preventDefault();
-        const page = $(this).attr('href');
-        $('#main-content').load(page);
-      });
+    // Bắt sự kiện click menu sidebar
+    $('.admin-sidebar a').click(function (e) {
+      e.preventDefault();
+      const page = $(this).attr('href');
 
+      // Load nội dung & lưu vào localStorage
+      $('#main-content').load(page);
+      localStorage.setItem('currentPage', page);
     });
-  </script>
+
+    $(document).on('click', '.ajax-link', function (e) {
+      e.preventDefault();
+      const page = $(this).attr('href');
+
+      $('#main-content').load(page);
+      localStorage.setItem('currentPage', page);
+    });
+  });
+</script>
+
 
 </body>
 

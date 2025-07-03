@@ -7,7 +7,8 @@ $success = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = trim($_POST['username']);
-    $password = trim($_POST['password']);
+    $password_raw = trim($_POST['password']);
+    $password = password_hash($password_raw, PASSWORD_DEFAULT);
     $ho_ten = trim($_POST['ho_ten']);
     $email = trim($_POST['email']);
 
@@ -16,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (mysqli_num_rows($check) > 0) {
         $error = "Tên đăng nhập hoặc email đã tồn tại.";
     } else {
-        // Đăng ký không mã hóa
+
         $sql = "INSERT INTO user (username, password, ho_ten, email, role) 
         VALUES ('$username', '$password', '$ho_ten', '$email', 'khach')";
         if (mysqli_query($link, $sql)) {
