@@ -1,12 +1,13 @@
 <?php
-$host = "localhost";
-$user = "root";
-$pass = "";
+$servername = "127.0.0.1";
+$username = "root";
+$password = "";
 $dbname = "travel_binh_dinh";
-$port = 3307;
 
-$conn = new mysqli($host, $user, $pass, $dbname, $port);
-if ($conn->connect_error) {
-    die("Kết nối CSDL thất bại: " . $conn->connect_error);
+$conn = mysqli_connect($servername, $username, $password, $dbname,3307);
+
+if (!$conn) {
+    die("Kết nối thất bại: " . mysqli_connect_error());
 }
+mysqli_set_charset($conn, "utf8mb4");
 ?>
