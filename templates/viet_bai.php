@@ -39,9 +39,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['tieu_de'], $_POST['no
     $sql = "INSERT INTO bai_viet (tieu_de, noi_dung, mo_ta, hinh_anh, danh_muc_id, id_user, trang_thai, ngay_tao) 
             VALUES ('$tieu_de', '$noi_dung', '$mo_ta', '$hinh_anh', 6, $id_user, 'cho_duyet', NOW())";
 
-    $message = mysqli_query($link, $sql)
-        ? "✅ Bài viết đã được gửi chờ admin duyệt!"
-        : "❌ Có lỗi xảy ra khi đăng bài.";
+    if (mysqli_query($link, $sql)) {
+        header("Location: profile.php");
+        exit();
+    } else {
+        $message = "❌ Có lỗi xảy ra khi đăng bài.";
+    }
 }
 ?>
 

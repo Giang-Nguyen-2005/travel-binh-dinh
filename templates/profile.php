@@ -93,5 +93,5 @@ $posts = mysqli_query($link, "SELECT * FROM bai_viet WHERE id_user = $id_user OR
         <p>Bạn chưa có bài viết nào.</p>
     <?php endif; ?>
 </div>
-
+<?php include '../includes/dang_ky.php'; ?>
 <?php include '../includes/footer.php'; ?>
