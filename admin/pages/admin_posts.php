@@ -10,7 +10,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['a
     $danh_muc_id = $_POST['danh_muc_id'];
     $trang_thai = $_POST['trang_thai'];
     $hinh_anh = $_POST['hinh_anh'];
-    $query = "INSERT INTO bai_viet (tieu_de, mo_ta, noi_dung, hinh_anh, danh_muc_id, trang_thai) VALUES ('$tieu_de', '$mo_ta', '$noi_dung', '$hinh_anh', '$danh_muc_id', '$trang_thai')";
+    $nguoi_dung_id = isset($_POST['nguoi_dung_id']) ? (int)$_POST['nguoi_dung_id'] : 1;
+    $query = "INSERT INTO bai_viet (tieu_de, mo_ta, noi_dung, hinh_anh, danh_muc_id, trang_thai, nguoi_dung_id) 
+              VALUES ('$tieu_de', '$mo_ta', '$noi_dung', '$hinh_anh', '$danh_muc_id', '$trang_thai', '$nguoi_dung_id')";
     mysqli_query($conn, $query);
     header('Location: admin_posts.php');
 }
@@ -32,7 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['a
     $danh_muc_id = $_POST['danh_muc_id'];
     $trang_thai = $_POST['trang_thai'];
     $hinh_anh = $_POST['hinh_anh'];
-    $query = "UPDATE bai_viet SET tieu_de='$tieu_de', mo_ta='$mo_ta', noi_dung='$noi_dung', hinh_anh='$hinh_anh', danh_muc_id='$danh_muc_id', trang_thai='$trang_thai' WHERE id=$id";
+    $nguoi_dung_id = isset($_POST['nguoi_dung_id']) ? (int)$_POST['nguoi_dung_id'] : 1;
+    $query = "UPDATE bai_viet SET tieu_de='$tieu_de', mo_ta='$mo_ta', noi_dung='$noi_dung', hinh_anh='$hinh_anh', danh_muc_id='$danh_muc_id', trang_thai='$trang_thai', nguoi_dung_id='$nguoi_dung_id' WHERE id=$id";
     mysqli_query($conn, $query);
     header('Location: admin_posts.php');
 }
@@ -73,6 +76,7 @@ $total_pages = ceil($total / $per_page);
         <tr>
             <th>ID</th>
             <th>Tiêu đề</th>
+            <th>Người đăng</th>
             <th class="danh-muc">Danh mục</th>
             <th class="trang-thai">Trạng thái</th>
             <th>Hình ảnh</th>
@@ -81,12 +85,17 @@ $total_pages = ceil($total / $per_page);
     </thead>
     <tbody>
     <?php
-    $query = "SELECT bv.id, bv.tieu_de, dm.ten as danh_muc, bv.trang_thai, bv.hinh_anh FROM bai_viet bv LEFT JOIN danh_muc dm ON bv.danh_muc_id = dm.id LIMIT $start, $per_page";
+    $query = "SELECT bv.id, bv.tieu_de, u.username as nguoi_dang, dm.ten as danh_muc, bv.trang_thai, bv.hinh_anh 
+              FROM bai_viet bv 
+              LEFT JOIN danh_muc dm ON bv.danh_muc_id = dm.id 
+              LEFT JOIN user u ON bv.id_user = u.id 
+              LIMIT $start, $per_page";
     $result = mysqli_query($conn, $query);
     while ($row = mysqli_fetch_assoc($result)) {
         echo "<tr>
                 <td>{$row['id']}</td>
                 <td>{$row['tieu_de']}</td>
+                <td>{$row['nguoi_dang']}</td>
                 <td class='danh-muc'>{$row['danh_muc']}</td>
                 <td class='trang-thai'>{$row['trang_thai']}</td>
                 <td><img src='../../assets/img/{$row['hinh_anh']}' width='50'></td>
@@ -117,7 +126,11 @@ $total_pages = ceil($total / $per_page);
 
 <?php if (isset($_GET['action']) && $_GET['action'] == 'edit' && isset($_GET['id'])) {
     $id = $_GET['id'];
-    $query = "SELECT * FROM bai_viet WHERE id = $id";
+    $query = "SELECT bv.*, dm.ten as danh_muc, u.username as nguoi_dang 
+              FROM bai_viet bv 
+              LEFT JOIN danh_muc dm ON bv.danh_muc_id = dm.id 
+              LEFT JOIN user u ON bv.id_user = u.id 
+              WHERE bv.id = $id";
     $post = mysqli_fetch_assoc(mysqli_query($conn, $query));
 ?>
 <h3>Sửa bài viết</h3>
@@ -134,7 +147,7 @@ $total_pages = ceil($total / $per_page);
     </div>
     <div class="form-group">
         <label>Nội dung</label>
-        <textarea id="noi_dung" name="noi_dung" rows="10" required><?php echo htmlspecialchars($post['noi_dung']); ?></textarea>
+        <textarea name="noi_dung" rows="10" required><?php echo htmlspecialchars($post['noi_dung']); ?></textarea>
     </div>
     <div class="form-group">
         <label>Danh mục</label>
@@ -187,7 +200,7 @@ $total_pages = ceil($total / $per_page);
     </div>
     <div class="form-group">
         <label>Nội dung</label>
-        <textarea id="noi_dung" name="noi_dung" rows="10" required></textarea>
+        <textarea name="noi_dung" rows="10" required></textarea>
     </div>
     <div class="form-group">
         <label>Danh mục</label>
@@ -226,7 +239,3 @@ $total_pages = ceil($total / $per_page);
 </form>
 <?php } ?>
 <?php require_once '../includes/footer.php'; ?>
-<script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
-<script>
-    CKEDITOR.replace('noi_dung');
-</script>
