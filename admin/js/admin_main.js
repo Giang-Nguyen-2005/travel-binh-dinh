@@ -1,31 +1,39 @@
 $(document).ready(function() {
-    // Tìm kiếm động
-    $('#search-input').on('keyup', function() {
-        var value = $(this).val().toLowerCase();
-        $('.table tbody tr').filter(function() {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-        });
+    // Hàm cập nhật URL với các tham số tìm kiếm và lọc
+    function updateSearchAndFilter() {
+        var search = $('#search-input').val();
+        var danh_muc = $('#filter-danh-muc').val();
+        var trang_thai = $('#filter-trang-thai').val();
+        
+        // Xây dựng URL với các tham số
+        var url = 'admin_posts.php?';
+        var params = [];
+        if (search) params.push('search=' + encodeURIComponent(search));
+        if (danh_muc) params.push('danh_muc=' + encodeURIComponent(danh_muc));
+        if (trang_thai) params.push('trang_thai=' + encodeURIComponent(trang_thai));
+        url += params.join('&');
+        
+        // Tải lại trang với URL mới
+        window.location.href = url;
+    }
+
+    // Tìm kiếm khi nhấn Enter
+    $('#search-input').on('keyup', function(e) {
+        if (e.key === 'Enter') {
+            updateSearchAndFilter();
+        }
     });
 
-    // Lọc động
+    // Lọc khi thay đổi bộ lọc
     $('.filter').on('change', function() {
-        var danh_muc_id = $('#filter-danh-muc').val();
-        var trang_thai = $('#filter-trang-thai').val();
-        var role = $('#filter-role').val();
-        $('.table tbody tr').filter(function() {
-            var show = true;
-            if (danh_muc_id && $(this).find('.danh-muc').text() !== danh_muc_id) {
-                show = false;
-            }
-            if (trang_thai && $(this).find('.trang-thai').text() !== trang_thai) {
-                show = false;
-            }
-            if (role && $(this).find('.role').text() !== role) {
-                show = false;
-            }
-            $(this).toggle(show);
-        });
+        updateSearchAndFilter();
     });
+
+    // Giữ giá trị bộ lọc khi tải trang
+    var urlParams = new URLSearchParams(window.location.search);
+    $('#search-input').val(urlParams.get('search') || '');
+    $('#filter-danh-muc').val(urlParams.get('danh_muc') || '');
+    $('#filter-trang-thai').val(urlParams.get('trang_thai') || '');
 
     // Xử lý hiển thị modal chi tiết bài viết
     $('.view-details').on('click', function(e) {

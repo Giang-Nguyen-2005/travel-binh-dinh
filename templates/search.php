@@ -24,7 +24,7 @@ if ($search !== '') {
 
 <div class="content-wrapper">
   <div class="text-left-content">
-    <h1>Kết quả cho: "<?= htmlspecialchars($search) ?>"</h1>
+    <h2 >Kết quả tìm kiếm</h2>
 
     <?php if (mysqli_num_rows($result) > 0): ?>
       <?php while ($row = mysqli_fetch_assoc($result)): ?>
