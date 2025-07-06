@@ -9,7 +9,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['a
     $noi_dung = mysqli_real_escape_string($conn, $_POST['noi_dung']);
     $danh_muc_id = $_POST['danh_muc_id'];
     $trang_thai = $_POST['trang_thai'];
-    $id_user = isset($_POST['id_user']) ? (int)$_POST['id_user'] : 1;
+    session_start();
+    $id_user = isset($_SESSION['admin_id']) ? (int)$_SESSION['admin_id'] : null;
+    if (!$id_user) {
+        echo "Không tìm thấy thông tin người dùng admin!";
+        exit;
+    }
+
 
     // Xử lý tải ảnh
     $hinh_anh = '';
@@ -54,7 +60,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['a
     $noi_dung = mysqli_real_escape_string($conn, $_POST['noi_dung']);
     $danh_muc_id = $_POST['danh_muc_id'];
     $trang_thai = $_POST['trang_thai'];
-    $id_user = isset($_POST['id_user']) ? (int)$_POST['id_user'] : 1;
+    $id_user = isset($_SESSION['admin_id']) ? (int)$_SESSION['admin_id'] : null;
+    if (!$id_user) {
+        echo "Không tìm thấy thông tin người dùng admin!";
+        exit;
+    }
+
 
     // Xử lý tải ảnh mới (nếu có)
     $hinh_anh = $_POST['hinh_anh_cu'] ?? ''; // Giữ ảnh cũ nếu không tải ảnh mới
@@ -147,7 +158,7 @@ $result = mysqli_query($conn, $query);
         <option value="tu_choi" <?php if (isset($_GET['trang_thai']) && $_GET['trang_thai'] == 'tu_choi') echo 'selected'; ?>>Từ chối</option>
     </select>
 </div>
-<input type="text" id="search-input" placeholder="Tìm kiếm bài viết..." value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
+<input type="text" id="search-input" placeholder="Tìm kiếm bài viết..." value="<?php echo isset($_GET['search']) ? ($_GET['search']) : ''; ?>">
 <table class="table">
     <thead>
         <tr>
@@ -171,8 +182,8 @@ $result = mysqli_query($conn, $query);
                 <td class='trang-thai'>{$row['trang_thai']}</td>
                 <td><img src='../../assets/img/{$row['hinh_anh']}' width='50'></td>
                 <td>
-                    <a href='admin_posts_details.php?id={$row['id']}&return_url=admin_posts.php' class='view-details' data-id='{$row['id']}'>Xem chi tiết</a> | 
-                    <a href='admin_posts.php?action=edit&id={$row['id']}'>Sửa</a> | 
+                    <a href='admin_posts_details.php?id={$row['id']}&return_url=admin_posts.php'>Xem chi tiết</a>| 
+                    <a href='admin_posts.php?action=edit&id={$row['id']}#form_sua'>Sửa</a>
                     <a href='admin_posts.php?action=delete&id={$row['id']}' onclick='return confirm(\"Xóa bài viết?\")'>Xóa</a>
                 </td>
               </tr>";
@@ -204,22 +215,22 @@ $result = mysqli_query($conn, $query);
               WHERE bv.id = $id";
     $post = mysqli_fetch_assoc(mysqli_query($conn, $query));
 ?>
-    <h3>Sửa bài viết</h3>
+    <h3 id="form_sua">Sửa bài viết</h3>
     <form method="POST" enctype="multipart/form-data">
         <input type="hidden" name="action" value="edit">
-        <input type="hidden" name="id" value="<?php echo htmlspecialchars($post['id']); ?>">
-        <input type="hidden" name="hinh_anh_cu" value="<?php echo htmlspecialchars($post['hinh_anh']); ?>">
+        <input type="hidden" name="id" value="<?php echo ($post['id']); ?>">
+        <input type="hidden" name="hinh_anh_cu" value="<?php echo ($post['hinh_anh']); ?>">
         <div class="form-group">
             <label>Tiêu đề</label>
-            <input type="text" name="tieu_de" value="<?php echo htmlspecialchars($post['tieu_de']); ?>" required>
+            <input type="text" name="tieu_de" value="<?php echo ($post['tieu_de']); ?>" required>
         </div>
         <div class="form-group">
             <label>Mô tả</label>
-            <textarea name="mo_ta" required><?php echo htmlspecialchars($post['mo_ta']); ?></textarea>
+            <textarea name="mo_ta" required><?php echo ($post['mo_ta']); ?></textarea>
         </div>
         <div class="form-group">
             <label>Nội dung</label>
-            <textarea name="noi_dung" rows="10" required><?php echo htmlspecialchars($post['noi_dung']); ?></textarea>
+            <textarea name="noi_dung" rows="10" required><?php echo ($post['noi_dung']); ?></textarea>
         </div>
         <div class="form-group">
             <label>Danh mục</label>
@@ -246,7 +257,7 @@ $result = mysqli_query($conn, $query);
             <label>Hình ảnh</label>
             <input type="file" name="hinh_anh" accept="image/*">
             <?php if ($post['hinh_anh']) { ?>
-                <p>Hình ảnh hiện tại: <img src='../../assets/img/<?php echo htmlspecialchars($post['hinh_anh']); ?>' width='50'></p>
+                <p>Hình ảnh hiện tại: <img src='../../assets/img/<?php echo ($post['hinh_anh']); ?>' width='50'></p>
             <?php } ?>
         </div>
         <button type="submit" class="btn">Cập nhật</button>

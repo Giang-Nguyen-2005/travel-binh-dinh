@@ -32,13 +32,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && in_array(
 <?php require_once '../includes/header.php'; ?>
 <h2>Chi tiết bài viết</h2>
 <div class="post-detail">
-    <p><strong>Tiêu đề:</strong> <?php echo htmlspecialchars($post['tieu_de']); ?></p>
-    <p><strong>Mô tả:</strong> <?php echo htmlspecialchars($post['mo_ta']); ?></p>
-    <p><strong>Nội dung:</strong> <?php echo htmlspecialchars($post['noi_dung']); ?></p>
-    <p><strong>Danh mục:</strong> <?php echo htmlspecialchars($post['danh_muc']); ?></p>
-    <p><strong>Trạng thái:</strong> <?php echo htmlspecialchars($post['trang_thai']); ?></p>
+    <p><strong>Tiêu đề:</strong> <?php echo ($post['tieu_de']); ?></p>
+    <p><strong>Mô tả:</strong> <?php echo ($post['mo_ta']); ?></p>
+    <p><strong>Nội dung:</strong> <?php echo ($post['noi_dung']); ?></p>
+    <p><strong>Danh mục:</strong> <?php echo ($post['danh_muc']); ?></p>
+    <p><strong>Trạng thái:</strong> <?php echo ($post['trang_thai']); ?></p>
     <p><strong>Hình ảnh:</strong></p>
-    <img src="../../assets/img/<?php echo htmlspecialchars($post['hinh_anh']); ?>" alt="<?php echo htmlspecialchars($post['tieu_de']); ?>">
+    <img src="../../assets/img/<?php echo ($post['hinh_anh']); ?>" alt="<?php echo ($post['tieu_de']); ?>">
 </div>
 <div class="actions">
     <form method="POST" style="display: inline;">
@@ -53,6 +53,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && in_array(
         <input type="hidden" name="action" value="pending">
         <button type="submit" class="btn pending-btn">Chờ duyệt</button>
     </form>
-    <a href="<?php echo isset($_GET['return_url']) ? htmlspecialchars($_GET['return_url']) : 'admin_posts.php'; ?>" class="btn">Quay lại</a>
+    <a href="<?php echo isset($_GET['return_url']) ? ($_GET['return_url']) : 'admin_posts.php'; ?>" class="btn">Quay lại</a>
 </div>
 <?php require_once '../includes/footer.php'; ?>
