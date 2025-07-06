@@ -239,3 +239,7 @@ $total_pages = ceil($total / $per_page);
 </form>
 <?php } ?>
 <?php require_once '../includes/footer.php'; ?>
+<script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('noi_dung');
+</script>
